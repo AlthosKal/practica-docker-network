@@ -72,7 +72,7 @@ docker network ls
 ```
 
 **Captura de la Ejecución:**  
-[Captura del comando `docker network ls`](img/img1.png)
+![Captura del comando `docker network ls`](img/img1.png)
 
 **Descripción:**  
 Listado de redes Docker disponibles en el sistema, mostrando las redes predeterminadas: bridge, host y none.
@@ -87,7 +87,7 @@ docker network ls | grep my-network
 ```
 
 **Captura de la Ejecución:**  
-[Captura de la creación de red personalizada](img/img2.png)
+![Captura de la creación de red personalizada](img/img2.png)
 
 **Descripción:**  
 Creación de una red puente personalizada llamada "my-network" y verificación de su existencia.
@@ -103,7 +103,7 @@ docker ps
 ```
 
 **Captura de la Ejecución:**  
-[Captura de contenedores conectados](img/img3.png)
+![Captura de contenedores conectados](img/img3.png)
 
 **Descripción:**  
 Ejecución de dos contenedores Nginx conectados a la red personalizada y verificación de su estado.
@@ -117,7 +117,7 @@ docker exec container1 curl -s container2
 ```
 
 **Captura de la Ejecución:**  
-[Captura de prueba de comunicación](img/img4.png)
+![Captura de prueba de comunicación](img/img4.png)
 
 **Descripción:**  
 Verificación de la comunicación entre contenedores usando el nombre como hostname, mostrando el HTML de respuesta de Nginx.
@@ -132,7 +132,7 @@ curl localhost:8080
 ```
 
 **Captura de la Ejecución:**  
-[Captura de contenedor con puerto expuesto](img/img5.png)
+![Captura de contenedor con puerto expuesto](img/img5.png)
 
 **Descripción:**  
 Configuración de mapeo de puertos (host:contenedor) y prueba de acceso desde el host.
@@ -147,7 +147,7 @@ docker inspect --format '{{.HostConfig.NetworkMode}}' host-networked
 ```
 
 **Captura de la Ejecución:**  
-[Captura de contenedor en red host](img/img6.png)
+![Captura de contenedor en red host](img/img6.png)
 
 **Descripción:**  
 Configuración de contenedor usando la red del host y verificación del modo de red.
@@ -329,8 +329,8 @@ docker exec container3 ping -c 2 container2  # Éxito (container2 está en ambas
 ```  
 
 **Captura de la Ejecución:**  
-[Captura](img/img7.png)
-[Captura](img/img7,5.png)
+![Captura](img/img7.png)
+![Captura](img/img7,5.png)
 
 **Análisis:**  
 - Los contenedores solo se comunican si comparten al menos una red en común.  
@@ -352,7 +352,7 @@ curl localhost:80
 ```  
 
 **Captura de la Ejecución:**  
-[Captura](img/img8.png)
+![Captura](img/img8.png)
 
 
 **Consideraciones:**  
@@ -375,7 +375,7 @@ docker exec isolated-container ping -c 2 google.com
 ```  
 
 **Captura de la Ejecución:**  
-[Captura](img/img9.png)
+![Captura](img/img9.png)
 
 
 **Conclusión:**  
@@ -399,7 +399,7 @@ for i in {1..4}; do docker run --rm --network service-network appropriate/curl p
 ```  
 
 **Captura de la Ejecución:**  
-[Captura](img/img10.png)
+![Captura](img/img10.png)
 
 
 **Evidencia:**  
@@ -460,7 +460,7 @@ docker network create --driver bridge my-network
 docker network ls | grep my-network
 ```  
 **Captura de la Ejecución:**  
-[Captura](img/img11.png)  
+![Captura](img/img11.png)  
 
 **Descripción:**  
 Se creó la red `my-network` con el driver `bridge` y se verificó su presencia en el listado de redes.  
@@ -478,7 +478,7 @@ docker run -d --name container2 --network my-network httpd
 docker ps --filter "network=my-network"
 ```  
 **Captura de la Ejecución:**  
-[Captura](img/img12.png)  
+![Captura](img/img12.png)  
 
 **Descripción:**  
 - `container1` (Nginx) y `container2` (Apache HTTPD) se ejecutan en modo detached.  
@@ -497,7 +497,7 @@ docker exec -it container1 bash -c "apt update && apt install -y curl"
 docker exec container1 curl -s http://container2
 ```  
 **Captura de la Ejecución:**  
-[Captura](img/img13.png)  
+![Captura](img/img13.png)  
 
 **Resultado esperado:**  
 ```html
@@ -523,7 +523,7 @@ docker network connect my-network2 container2
 docker inspect container2 --format '{{.NetworkSettings.Networks}}'
 ```  
 **Captura de la Ejecución:**  
-[Captura](img/img14.png)  
+![Captura](img/img14.png)  
 
 **Salida esperada:**  
 ```json
@@ -542,7 +542,7 @@ docker network disconnect my-network container2
 docker inspect container2 --format '{{range .NetworkSettings.Networks}}{{.NetworkID}}{{end}}'
 ```  
 **Captura de la Ejecución:**  
-[Captura](img/img15.png)  
+![Captura](img/img15.png)  
 
 **Validación:**  
 - El comando solo muestra el ID de`my-network2`.
@@ -559,7 +559,7 @@ docker network rm my-network2
 docker network ls --filter "name=my-network2"
 ```  
 **Captura de la Ejecución:**  
-[Captura](img/img16.png)  
+![Captura](img/img16.png)  
 
 **Regla clave:**  
 - Docker no permite eliminar redes con contenedores activos.  
